@@ -137,10 +137,10 @@ internal fun PluginRegistry.Registrar.addActivityResultListener() {
 internal class ResultListener : PluginRegistry.ActivityResultListener {
     internal var onCompleted: (() -> Unit)? = null
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?): Boolean {
-        if (requestCode != REQUEST_CAMERA_IMAGE && requestCode != REQUEST_CAMERA_VIDEO) return true
+        if (requestCode != REQUEST_CAMERA_IMAGE && requestCode != REQUEST_CAMERA_VIDEO) return false
         if (resultCode != Activity.RESULT_OK) return true
         onCompleted?.invoke()
-        return true
+        return false
     }
 
 }
